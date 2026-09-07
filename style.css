@@ -8,5 +8,6 @@
 /* Set Up Custom Properties */
 
 ::root {
-    
+    /* UI colors */
+    --bg-color: #F5F4EE
 }
