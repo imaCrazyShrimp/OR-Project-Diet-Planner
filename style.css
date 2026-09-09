@@ -19,4 +19,10 @@
 
     /* Fonts */
     --font-base: "Montserrat", "Inter", sans-serif;
+
+    /* Layout */
+  --max-width: 1200px;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
 }
