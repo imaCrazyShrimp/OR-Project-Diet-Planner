@@ -9,5 +9,6 @@
 
 ::root {
     /* UI colors */
-    --bg-color: #F5F4EE
+    --bg-color: #F5F4EE;
+    --primary-color: #1A603B
 }
