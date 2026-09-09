@@ -16,4 +16,7 @@
     --accent-color: #FEE29C;
     --txt-color-main: #0C402F;
     --txt-desc-color: #B5C3CA;
+
+    /* Fonts */
+    --font-base: "Montserrat", "Inter", sans-serif;
 }
