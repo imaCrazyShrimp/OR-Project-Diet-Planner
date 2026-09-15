@@ -29,4 +29,5 @@
 
 .body {
   background-color: var(--bg-color);
+  color: var(--txt-desc-color);
 }
