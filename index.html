@@ -8,34 +8,36 @@
     <title>The Diet Planner</title>
 </head>
 <body>
-    <h1>The Diet Planner</h1>
-    <p>
-        "The Diet Planner" es un programa diseñado para maximizar tus requerimientos nutricionales diarios 
-        al menor costo posible. <strong>¡Salvando tu Cartera y tu Estomago!</strong>
-    </p>
+    <div id="container">
+        <h1>The Diet Planner</h1>
+        <p>
+            "The Diet Planner" es un programa diseñado para maximizar tus requerimientos nutricionales diarios 
+            al menor costo posible. <strong>¡Salvando tu Cartera y tu Estomago!</strong>
+        </p>
 
-    <h2>Selector de Problemas</h2>
+        <h2>Selector de Problemas</h2>
 
-    <select id="diet-select" name="diet">
-        <option value="">---Selecciona una dieta---</option>
-        <option value="Rice-and-Beans">Arroz y Frijoles</option>            
-        <option value="Eggs-and-Toasts">Huevos y Pan Tostado</option>
-        <option value="Chicken-and-Salad">Pollo y Ensalada</option>
-    </select>
+        <select id="diet-select" name="diet">
+            <option value="">---Selecciona una dieta---</option>
+            <option value="Rice-and-Beans">Arroz y Frijoles</option>            
+            <option value="Eggs-and-Toasts">Huevos y Pan Tostado</option>
+            <option value="Chicken-and-Salad">Pollo y Ensalada</option>
+        </select>
 
-    <h3>Resumen del Problema</h3>
-    <div id="problem-summary"></div> <!--Problem summary container-->
+        <h3>Resumen del Problema</h3>
+        <div id="problem-summary"></div> <!--Problem summary container-->
 
-    <!--Graph Container-->
-    <div id="graph-container"></div> 
-    
-    <h2>Resultados</h2> <!--This is header separator for the results panel-->
-    <div id="results"></div>
-    
-    <!--Navigation Buttons-->
-    <div id="nav-controls">
-        <button type="button" id="btn-previous">Anterior</button>
-        <button type="button" id="btn-next">Siguiente</button>
+        <!--Graph Container-->
+        <div id="graph-container"></div> 
+        
+        <h2>Resultados</h2> <!--This is header separator for the results panel-->
+        <div id="results"></div>
+        
+        <!--Navigation Buttons-->
+        <div id="nav-controls">
+            <button type="button" id="btn-previous">Anterior</button>
+            <button type="button" id="btn-next">Siguiente</button>
+        </div>
     </div>
 </body>
 </html>
