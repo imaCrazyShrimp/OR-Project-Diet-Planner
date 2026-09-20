@@ -32,3 +32,7 @@ body {
   color: var(--txt-desc-color);
   font-family: var(--font-base);
 }
+
+#container {
+  padding: 1rem;
+}
