@@ -49,7 +49,7 @@ h2 {
 
 h3, 
 select, 
-#btn-previous, 
-#btn-next {
+button {
   margin-top: var(--spacing-sm);
 }
+
