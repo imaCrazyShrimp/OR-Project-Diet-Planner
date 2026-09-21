@@ -29,7 +29,7 @@
 
 body {
   background-color: var(--bg-color);
-  color: var(--txt-desc-color);
+  color: var(--txt-color-main);
   font-family: var(--font-base);
 }
 
