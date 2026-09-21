@@ -43,6 +43,10 @@ h1 {
   text-align: center;
 }
 
+h2 {
+  margin-top: var(--spacing-md);
+}
+
 h3, 
 select, 
 #btn-previous, 
