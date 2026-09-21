@@ -38,5 +38,5 @@ body {
 }
 
 h1 {
-  color: var(--primary-color);
+  color: var(--txt-color-main);
 }
