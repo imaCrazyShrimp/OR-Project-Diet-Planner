@@ -39,5 +39,5 @@ body {
 
 h1 {
   color: var(--txt-color-main);
-  padding-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
 }
