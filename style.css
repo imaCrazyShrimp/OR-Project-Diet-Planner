@@ -9,7 +9,7 @@
 
 :root {
     /* UI colors */
-    --bg-color: #F5F4EE;
+    --bg-color: #f8faf5; 
     --primary-color: #1A603B;
     --secondary-color: #44A252;
     --hover-color: #9CD0A2;
@@ -53,3 +53,7 @@ button {
   margin-top: var(--spacing-sm);
 }
 
+select, 
+button {
+
+}
