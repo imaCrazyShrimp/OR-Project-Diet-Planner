@@ -42,3 +42,10 @@ h1 {
   margin-bottom: var(--spacing-lg);
   text-align: center;
 }
+
+h3, 
+select, 
+#btn-previous, 
+#btn-next {
+  margin-top: var(--spacing-sm);
+}
