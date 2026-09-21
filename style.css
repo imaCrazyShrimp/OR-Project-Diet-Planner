@@ -34,7 +34,7 @@ body {
 }
 
 #container {
-  padding: 1rem;
+  padding: var(--spacing-lg);
 }
 
 h1 {
