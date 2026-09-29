@@ -3,4 +3,4 @@ const nextButton = document.getElementById("btn-next"); // const means var that 
 const previousButton = document.getElementById("btn-previous");
 const problemSummary = document.getElementById("problem-summary");
 const graphContainer = document.getElementById("graph-container");
-
+const results = document.getElementById("results");
