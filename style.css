@@ -59,7 +59,7 @@ button {
   color: var(--bg-color);
   background-color: var(--primary-color);
   padding: var(--spacing-sm);
-  border-radius: 10px;
+  border-radius: var(--spacing-sm);
   font-weight: bold;
   border: none;
 }
