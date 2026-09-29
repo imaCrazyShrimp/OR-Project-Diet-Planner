@@ -2,5 +2,5 @@ const dietSelector = document.getElementById("diet-select");
 const nextButton = document.getElementById("btn-next"); // const means var that can't accept other values
 const previousButton = document.getElementById("btn-previous");
 const problemSummary = document.getElementById("problem-summary");
-
+const graphContainer = document.getElementById("graph-container");
 
