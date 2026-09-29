@@ -60,5 +60,5 @@ button {
   padding: var(--spacing-sm);
   border-radius: 10px;
   font-weight: bold;
-  border-color: green;
+  border: none;
 }
