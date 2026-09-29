@@ -8,10 +8,19 @@ const results = document.getElementById("results");
 const dietProblems = {
     "Rice-and-Beans": {
         name: "Arroz y Frijoles",
-        objective: { x: 0.5, y:0.8 },
+        objective: { x: 0.5, y: 0.8 },
         constraints: [
             { label: "Protein",  a: 4,    b: 8,   operator: ">=", value: 32},
             { label: "Calories", a: 200,  b: 220, operator: ">=", value: 800}
+        ]
+    },
+   
+    "Eggs-and-Toasts": {
+        name: "Huevos y Pan Tostado",
+        objective: { x: 0.6, y: 0.4 },
+        constraints: [
+            { label: "Protein",  a: 6,    b: 4,   operator: ">=", value: 20},
+            { label: "Calories", a: 70,  b: 70, operator: ">=", value: 300}
         ]
     }
 };
