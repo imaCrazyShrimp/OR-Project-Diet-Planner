@@ -63,3 +63,12 @@ button {
   font-weight: bold;
   border: none;
 }
+
+button {
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--hover-color);
+  transform: scale(1.02);
+}
