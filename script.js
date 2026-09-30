@@ -1,6 +1,6 @@
 // state variables
 let currentProblem = null; 
-let currentStepNumber = 0;
+let currentStep = 0;
 
 // reference selector
 const dietSelector = document.getElementById("diet-select");
@@ -42,5 +42,5 @@ const dietProblems = {
 // listeners
 dietSelector.addEventListener("change", function() {
     currentProblem = dietProblems[dietSelector.value];
-    currentStepNumber = 0;
+    currentStep = 0;
 });
