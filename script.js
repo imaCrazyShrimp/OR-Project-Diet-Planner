@@ -1,6 +1,6 @@
 // state variables
-let currentProblem;
-let currentStepNumber;
+let currentProblem = null; 
+let currentStepNumber = 0;
 
 // reference selector
 const dietSelector = document.getElementById("diet-select");
