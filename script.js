@@ -43,4 +43,5 @@ const dietProblems = {
 dietSelector.addEventListener("change", function() {
     currentProblem = dietProblems[dietSelector.value];
     currentStep = 0;
+    console.log(currentProblem);
 });
