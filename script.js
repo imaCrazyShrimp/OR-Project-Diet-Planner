@@ -38,3 +38,9 @@ const dietProblems = {
         ]
     }
 };
+
+// listeners
+dietSelector.addEventListener("change", function() {
+    currentProblem = dietProblems[dietSelector.value];
+    currentStepNumber = 0;
+});
