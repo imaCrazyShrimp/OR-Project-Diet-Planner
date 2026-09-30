@@ -39,9 +39,35 @@ const dietProblems = {
     }
 };
 
-// listeners
+// Event listeners
 dietSelector.addEventListener("change", function() {
     currentProblem = dietProblems[dietSelector.value];
     currentStep = 0;
     console.log(currentProblem);
+});
+
+nextButton.addEventListener("click", function() {
+    if (currentProblem === null) { 
+        return; // nothing selected yet, do nothing
+    }
+    
+    const maxStep = currentProblem.constraints.length + 2;
+
+    if (currentStep < maxStep) {
+        currentStep = currentStep + 1;
+    }
+
+    console.log(currentStep);
+});
+
+previousButton.addEventListener("click", function() {
+    if (currentProblem === null) {
+        return;
+    }
+
+    if (currentStep > 0) { 
+        currentStep = currentStep - 1;
+    }
+
+    console.log(currentStep);
 });
