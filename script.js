@@ -39,10 +39,9 @@ const dietProblems = {
     }
 };
 
-// Event listeners
-dietSelector.addEventListener("change", function() {
-    currentProblem = dietProblems[dietSelector.value];
-    
+// functions
+function renderSummary() {
+        
     if (!currentProblem) { // check if null or undefined
         problemSummary.textContent = "";
         return;
@@ -59,12 +58,13 @@ dietSelector.addEventListener("change", function() {
     const fullSumary = `${sentence}<br><strong>Restricciones:</strong><br>${constraintText}`;
         
     problemSummary.innerHTML = fullSumary;
+}
 
-    console.log(sentence);
-    console.log(constraintText);
-
+// Event listeners
+dietSelector.addEventListener("change", function() {
+    currentProblem = dietProblems[dietSelector.value];
     currentStep = 0;  
-    console.log(currentProblem);
+    renderSummary();
 });
 
 nextButton.addEventListener("click", function() {
@@ -78,7 +78,7 @@ nextButton.addEventListener("click", function() {
         currentStep = currentStep + 1;
     }
 
-    console.log(currentStep);
+    renderSummary();
 });
 
 previousButton.addEventListener("click", function() {
@@ -90,5 +90,5 @@ previousButton.addEventListener("click", function() {
         currentStep = currentStep - 1;
     }
 
-    console.log(currentStep);
+    renderSummary();
 });
