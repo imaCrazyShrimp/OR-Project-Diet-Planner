@@ -47,11 +47,11 @@ function renderSummary() {
         return;
     }
 
-    const sentence = `<strong>Minimizar costo:</strong><br>C = ${currentProblem.objective.x}x + ${currentProblem.objective.y}y</li>`;
+    const sentence = `<strong>Minimizar costo:</strong><br>C = ${currentProblem.objective.x}x + ${currentProblem.objective.y}y  `;
     let constraintParts = [];
 
     currentProblem.constraints.forEach(function(constraint){
-        constraintParts.push(`${constraint.label}: ${constraint.a}x + ${constraint.b}y >= ${constraint.value}`);
+        constraintParts.push(`${constraint.label}: ${constraint.a}x + ${constraint.b}y ${constraint.operator} ${constraint.value}`);
     });
 
     const constraintText = constraintParts.join("<br>");
