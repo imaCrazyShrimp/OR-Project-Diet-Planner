@@ -102,7 +102,7 @@ function getAxisBounds(problem) {
     });
 
     return {
-        maxX: maxX * 1.2,
+        maxX: maxX * 1.2, // add padding to keep the lines from touching the edges
         maxY: maxY * 1.2
     };
 }
