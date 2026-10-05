@@ -85,6 +85,28 @@ function getMaxStep() {
     return currentProblem.constraints.length + 2;
 }
 
+function getAxisBounds(problem) {
+    let maxX = 0;
+    let maxY = 0;
+
+    problem.constraints.forEach(function(constraint) {
+        const xIntercept = constraint.value / constraint.a;
+        const yIntercept = constraint.value / constraint.b;
+
+        if (xIntercept > maxX) {
+            maxX = xIntercept;
+        }
+        if (yIntercept > maxY) {
+            maxY = yIntercept;
+        }
+    });
+
+    return {
+        maxX: maxX * 1.2,
+        maxY: maxY * 1.2
+    };
+}
+
 // Event listeners
 dietSelector.addEventListener("change", function() {
     currentProblem = dietProblems[dietSelector.value];
