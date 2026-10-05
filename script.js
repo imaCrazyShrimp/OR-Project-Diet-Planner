@@ -40,6 +40,11 @@ const dietProblems = {
 };
 
 // functions
+function render() {
+    renderSummary();
+    renderStep();
+}
+
 function renderSummary() {
         
     if (!currentProblem) { // check if null or undefined
@@ -60,11 +65,31 @@ function renderSummary() {
     problemSummary.innerHTML = fullSumary;
 }
 
+function renderStep() {
+     
+    if (!currentProblem) { // check if null or undefined
+        graphContainer.textContent = "";
+        return;
+    }
+
+    const maxStep = getMaxStep();
+
+    const sentence = `Paso ${currentStep} de ${maxStep}`;
+
+    graphContainer.textContent = sentence;
+
+    console.log(sentence);
+}
+
+function getMaxStep() {
+    return currentProblem.constraints.length + 2;
+}
+
 // Event listeners
 dietSelector.addEventListener("change", function() {
     currentProblem = dietProblems[dietSelector.value];
     currentStep = 0;  
-    renderSummary();
+    render();
 });
 
 nextButton.addEventListener("click", function() {
@@ -72,13 +97,13 @@ nextButton.addEventListener("click", function() {
         return; // nothing selected yet, do nothing
     }
     
-    const maxStep = currentProblem.constraints.length + 2;
+    const maxStep = getMaxStep();
 
     if (currentStep < maxStep) {
         currentStep = currentStep + 1;
     }
 
-    renderSummary();
+    render();
 });
 
 previousButton.addEventListener("click", function() {
@@ -90,5 +115,5 @@ previousButton.addEventListener("click", function() {
         currentStep = currentStep - 1;
     }
 
-    renderSummary();
+    render();
 });
