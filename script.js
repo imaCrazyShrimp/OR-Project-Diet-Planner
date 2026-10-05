@@ -1,7 +1,7 @@
 // state variables
 let currentProblem = null; 
 let currentStep = 0;
-let currentBounds = null;
+let currentBounds = null;s
 
 // reference selector
 const dietSelector = document.getElementById("diet-select");
@@ -112,6 +112,8 @@ function getAxisBounds(problem) {
 dietSelector.addEventListener("change", function() {
     currentProblem = dietProblems[dietSelector.value];
     currentStep = 0;  
+    
+    currentBounds = getAxisBounds(currentProblem);
     render();
 });
 
