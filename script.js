@@ -11,6 +11,8 @@ const problemSummary = document.getElementById("problem-summary");
 const graphContainer = document.getElementById("graph-container");
 const results = document.getElementById("results");
 
+const CANVAS_SIZE = 275;
+
 const dietProblems = {
     "Rice-and-Beans": {
         name: "Arroz y Frijoles",
@@ -32,7 +34,7 @@ const dietProblems = {
 
     "Chicken-and-Salad": {
         name: "Pollo y Ensalada",
-        objective: { x: 1.50, y: 0.275 },
+        objective: { x: 1.50, y: 0.75 },
         constraints: [
             { label: "Proteína",  a: 25,  b: 2,   operator: ">=", value: 50  },
             { label: "Calorías", a: 150, b: 50,  operator: ">=", value: 400 }
