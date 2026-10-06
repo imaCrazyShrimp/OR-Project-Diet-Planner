@@ -71,6 +71,7 @@ function renderGraph() {
 
 function render() {
     renderSummary();
+    const svg = renderGraph();
     renderGraph();
 }
 
