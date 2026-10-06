@@ -67,6 +67,8 @@ function renderGraph() {
     svg.appendChild(xAxis);
     svg.appendChild(yAxis);
     graphContainer.appendChild(svg);
+
+    return svg;
 }
 
 function render() {
