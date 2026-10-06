@@ -70,6 +70,7 @@ function renderGraph() {
 function render() {
     renderSummary();
     renderStep();
+    renderGraph();
 }
 
 function renderSummary() {
