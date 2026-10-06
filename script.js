@@ -147,8 +147,15 @@ function toSvgY(mathY) {
 // Event listeners
 dietSelector.addEventListener("change", function() {
     currentProblem = dietProblems[dietSelector.value];
-    currentStep = 0;  
+
+    if (!currentProblem) {
+        currentBounds = null;
+        currentStep = 0;
+        render();
+        return;
+    }
     
+    currentStep = 0;  
     currentBounds = getAxisBounds(currentProblem);
     render();
 });
