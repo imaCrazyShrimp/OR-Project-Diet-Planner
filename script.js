@@ -32,7 +32,7 @@ const dietProblems = {
 
     "Chicken-and-Salad": {
         name: "Pollo y Ensalada",
-        objective: { x: 1.50, y: 0.75 },
+        objective: { x: 1.50, y: 0.275 },
         constraints: [
             { label: "Proteína",  a: 25,  b: 2,   operator: ">=", value: 50  },
             { label: "Calorías", a: 150, b: 50,  operator: ">=", value: 400 }
@@ -45,21 +45,21 @@ function renderGraph() {
     graphContainer.innerHTML = "";
 
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.setAttribute("width", 750);
-    svg.setAttribute("height", 750);
+    svg.setAttribute("width", 275);
+    svg.setAttribute("height", 275);
 
     const xAxis = document.createElementNS("http://www.w3.org/2000/svg", "line");
     xAxis.setAttribute("x1", 0);
-    xAxis.setAttribute("y1", 750);
-    xAxis.setAttribute("x2", 750);
-    xAxis.setAttribute("y2", 750);
+    xAxis.setAttribute("y1", 275);
+    xAxis.setAttribute("x2", 275);
+    xAxis.setAttribute("y2", 275);
     xAxis.setAttribute("stroke", "black");
 
     const yAxis = document.createElementNS("http://www.w3.org/2000/svg", "line");
     yAxis.setAttribute("x1", 0);
     yAxis.setAttribute("y1", 0);
     yAxis.setAttribute("x2", 0);
-    yAxis.setAttribute("y2", 750);
+    yAxis.setAttribute("y2", 275);
     yAxis.setAttribute("stroke", "black");
 
     svg.appendChild(xAxis);
@@ -135,11 +135,11 @@ function getAxisBounds(problem) {
 }
 
 function toSvgX(mathX) {
-    return (mathX / currentBounds.maxX) * 750;
+    return (mathX / currentBounds.maxX) * 275;
 }
 
 function toSvgY(mathY) {
-    return 750 - (mathY / currentBounds.maxY) * 750;
+    return 275 - (mathY / currentBounds.maxY) * 275;
 }
 
 // Event listeners
