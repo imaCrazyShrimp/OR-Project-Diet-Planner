@@ -41,6 +41,32 @@ const dietProblems = {
 };
 
 // functions
+function renderGraph() {
+    graphContainer.innerHTML = "";
+
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("width", 750);
+    svg.setAttribute("height", 750);
+
+    const xAxis = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    xAxis.setAttribute("x1", 0);
+    xAxis.setAttribute("y1", 750);
+    xAxis.setAttribute("x2", 750);
+    xAxis.setAttribute("y2", 750);
+    xAxis.setAttribute("stroke", "black");
+
+    const yAxis = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    yAxis.setAttribute("x1", 0);
+    yAxis.setAttribute("y1", 0);
+    yAxis.setAttribute("x2", 0);
+    yAxis.setAttribute("y2", 750);
+    yAxis.setAttribute("stroke", "black");
+
+    svg.appendChild(xAxis);
+    svg.appendChild(yAxis);
+    graphContainer.appendChild(svg);
+}
+
 function render() {
     renderSummary();
     renderStep();
