@@ -47,21 +47,21 @@ function renderGraph() {
     graphContainer.innerHTML = "";
 
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.setAttribute("width", 275);
-    svg.setAttribute("height", 275);
+    svg.setAttribute("width", CANVAS_SIZE);
+    svg.setAttribute("height", CANVAS_SIZE);
 
     const xAxis = document.createElementNS("http://www.w3.org/2000/svg", "line");
     xAxis.setAttribute("x1", 0);
-    xAxis.setAttribute("y1", 275);
-    xAxis.setAttribute("x2", 275);
-    xAxis.setAttribute("y2", 275);
+    xAxis.setAttribute("y1", CANVAS_SIZE);
+    xAxis.setAttribute("x2", CANVAS_SIZE);
+    xAxis.setAttribute("y2", CANVAS_SIZE);
     xAxis.setAttribute("stroke", "black");
 
     const yAxis = document.createElementNS("http://www.w3.org/2000/svg", "line");
     yAxis.setAttribute("x1", 0);
     yAxis.setAttribute("y1", 0);
     yAxis.setAttribute("x2", 0);
-    yAxis.setAttribute("y2", 275);
+    yAxis.setAttribute("y2", CANVAS_SIZE);
     yAxis.setAttribute("stroke", "black");
 
     svg.appendChild(xAxis);
@@ -137,11 +137,11 @@ function getAxisBounds(problem) {
 }
 
 function toSvgX(mathX) {
-    return (mathX / currentBounds.maxX) * 275;
+    return (mathX / currentBounds.maxX) * CANVAS_SIZE;
 }
 
 function toSvgY(mathY) {
-    return 275 - (mathY / currentBounds.maxY) * 275;
+    return CANVAS_SIZE - (mathY / currentBounds.maxY) * CANVAS_SIZE;
 }
 
 // Event listeners
