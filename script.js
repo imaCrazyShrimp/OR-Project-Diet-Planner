@@ -108,6 +108,10 @@ function getAxisBounds(problem) {
     };
 }
 
+function toSvgX(mathX) {
+    return (mathX / currentBounds.maxX) * 750;
+}
+
 // Event listeners
 dietSelector.addEventListener("change", function() {
     currentProblem = dietProblems[dietSelector.value];
