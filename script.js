@@ -100,6 +100,7 @@ function render() {
     renderSummary();
     const svg = renderGraph();
     renderConstraints(svg);
+    renderRegion(svg);
     renderOptimal(svg);
     renderResults();
 }
@@ -293,6 +294,58 @@ function renderResults() {
     results.innerHTML = `<strong>Solución óptima:</strong><br>
         x = ${currentOptimal.x.toFixed(2)}, y = ${currentOptimal.y.toFixed(2)}<br>
         <strong>Costo mínimo:</strong> $${currentOptimal.cost.toFixed(2)}`;
+}
+
+function getRegionPolygon() {
+    const boxCorners = [
+        { x: 0, y: 0 },
+        { x: currentBounds.maxX, y: 0 },
+        { x: currentBounds.maxX, y: currentBounds.maxY },
+        { x: 0, y: currentBounds.maxY }
+    ];
+
+    // only the box corners that satisfy every constraint
+    const feasibleBoxCorners = boxCorners.filter(function(p) {
+        return currentProblem.constraints.every(function(c) {
+            return satisfies(p, c);
+        });
+    });
+
+    const points = currentCorners.concat(feasibleBoxCorners);
+
+    // center of the shape, used to sort the points around it
+    let cx = 0;
+    let cy = 0;
+    points.forEach(function(p) {
+        cx += p.x / points.length;
+        cy += p.y / points.length;
+    });
+
+    points.sort(function(p, q) {
+        return Math.atan2(p.y - cy, p.x - cx) - Math.atan2(q.y - cy, q.x - cx);
+    });
+
+    return points;
+}
+
+function renderRegion(svg) {
+    if (!currentProblem || !currentCorners || currentCorners.length === 0) {
+        return;
+    }
+    if (currentStep < currentProblem.constraints.length + 1) {
+        return; // not this step yet
+    }
+
+    const pointsAttr = getRegionPolygon().map(function(p) {
+        return toSvgX(p.x) + "," + toSvgY(p.y);
+    }).join(" ");
+
+    const polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+    polygon.setAttribute("points", pointsAttr);
+    polygon.setAttribute("fill", "green");
+    polygon.setAttribute("fill-opacity", 0.25);
+
+    svg.insertBefore(polygon, svg.firstChild); // draw it behind the axes and lines
 }
 
 nextButton.addEventListener("click", function() {
