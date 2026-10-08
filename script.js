@@ -120,7 +120,8 @@ function renderConstraints(svg) {
             line.setAttribute("y1", toSvgY(0));
             line.setAttribute("x2", toSvgX(0));
             line.setAttribute("y2", toSvgY(yIntercept));
-            line.setAttribute("stroke", "red");
+            line.setAttribute("stroke", CONSTRAINT_COLORS[index % CONSTRAINT_COLORS.length]);
+            line.setAttribute("stroke-width", 2);
 
             svg.appendChild(line);
         }
@@ -310,8 +311,8 @@ function renderOptimal(svg) {
     const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
     dot.setAttribute("cx", toSvgX(currentOptimal.x));
     dot.setAttribute("cy", toSvgY(currentOptimal.y));
-    dot.setAttribute("r", 5);
-    dot.setAttribute("fill", "green");
+    dot.setAttribute("r", 7);
+    dot.setAttribute("fill", "#FF8A3D");
 
     svg.appendChild(dot);
 }
@@ -373,7 +374,7 @@ function renderRegion(svg) {
 
     const polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
     polygon.setAttribute("points", pointsAttr);
-    polygon.setAttribute("fill", "green");
+    polygon.setAttribute("fill", "#4CAF50");
     polygon.setAttribute("fill-opacity", 0.25);
 
     svg.insertBefore(polygon, svg.firstChild); // draw it behind the axes and lines
@@ -404,3 +405,5 @@ previousButton.addEventListener("click", function() {
 
     render();
 });
+
+render();
