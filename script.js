@@ -76,18 +76,21 @@ function renderConstraints(svg) {
         return;
     }
 
-    currentProblem.constraints.forEach(function(constraint) {
-        const xIntercept = constraint.value / constraint.a;
-        const yIntercept = constraint.value / constraint.b;
+    currentProblem.constraints.forEach(function(constraint, index) {
+        
+        if (currentStep >= index + 1) {
+            const xIntercept = constraint.value / constraint.a;
+            const yIntercept = constraint.value / constraint.b;
 
-        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-        line.setAttribute("x1", toSvgX(xIntercept));
-        line.setAttribute("y1", toSvgY(0));
-        line.setAttribute("x2", toSvgX(0));
-        line.setAttribute("y2", toSvgY(yIntercept));
-        line.setAttribute("stroke", "red");
+            const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+            line.setAttribute("x1", toSvgX(xIntercept));
+            line.setAttribute("y1", toSvgY(0));
+            line.setAttribute("x2", toSvgX(0));
+            line.setAttribute("y2", toSvgY(yIntercept));
+            line.setAttribute("stroke", "red");
 
-        svg.appendChild(line);
+            svg.appendChild(line);
+        }
     });
 }
 
