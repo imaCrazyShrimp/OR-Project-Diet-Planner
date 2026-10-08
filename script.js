@@ -100,6 +100,8 @@ function render() {
     renderSummary();
     const svg = renderGraph();
     renderConstraints(svg);
+    renderOptimal(svg);
+    renderResults();
 }
 
 function renderSummary() {
