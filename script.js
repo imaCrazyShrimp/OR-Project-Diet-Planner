@@ -265,6 +265,34 @@ function getOptimalPoint(problem, corners) {
     return { x: best.x, y: best.y, cost: bestCost };
 }
 
+function renderOptimal(svg) {
+    if (!currentProblem || !currentOptimal) {
+        return;
+    }
+    if (currentStep < currentProblem.constraints.length + 2) {
+        return; // not the final step yet
+    }
+
+    const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    dot.setAttribute("cx", toSvgX(currentOptimal.x));
+    dot.setAttribute("cy", toSvgY(currentOptimal.y));
+    dot.setAttribute("r", 5);
+    dot.setAttribute("fill", "green");
+
+    svg.appendChild(dot);
+}
+
+function renderResults() {
+    if (!currentProblem || !currentOptimal || currentStep < getMaxStep()) {
+        results.textContent = "";
+        return;
+    }
+
+    results.innerHTML = `<strong>Solución óptima:</strong><br>
+        x = ${currentOptimal.x.toFixed(2)}, y = ${currentOptimal.y.toFixed(2)}<br>
+        <strong>Costo mínimo:</strong> $${currentOptimal.cost.toFixed(2)}`;
+}
+
 nextButton.addEventListener("click", function() {
     if (currentProblem === null) { 
         return; // nothing selected yet, do nothing
