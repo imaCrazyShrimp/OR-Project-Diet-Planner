@@ -19,13 +19,13 @@ const dietProblems = {
         objective: { x: 0.5, y: 0.8 },
         constraints: [
             { label: "Proteína",  a: 4,    b: 8,   operator: ">=", value: 32  },
-            { label: "Calorías", a: 200,  b: 220, operator: ">=", value: 800 }
+            { label: "Calorías", a: 200,  b: 220, operator: ">=", value: 1000 }
         ]
     },
    
     "Eggs-and-Toasts": {
         name: "Huevos y Pan Tostado",
-        objective: { x: 0.6, y: 0.4 },
+        objective: { x: 0.6, y: 0.5 },
         constraints: [
             { label: "Proteína",  a: 6,    b: 4,   operator: ">=", value: 20  },
             { label: "Calorías", a: 70,  b: 70,   operator: ">=", value: 300 }
