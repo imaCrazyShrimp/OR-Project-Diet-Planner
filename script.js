@@ -170,6 +170,57 @@ function toSvgY(mathY) {
     return CANVAS_SIZE - (mathY / currentBounds.maxY) * CANVAS_SIZE;
 }
 
+function satisfies(point, constraint) {
+    const total = constraint.a * point.x + constraint.b * point.y;
+
+    if (constraint.operator === ">=") {
+        return total >= constraint.value - 1e-9;
+    }
+    if (constraint.operator === "<=") {
+        return total <= constraint.value + 1e-9;
+    }
+    return false;
+}
+
+function getCornerPoints(problem) {
+    const constraints = problem.constraints;
+    const candidates = [];
+
+    // 1. where each line crosses the axes
+    constraints.forEach(function(c) {
+        candidates.push({ x: c.value / c.a, y: 0 });
+        candidates.push({ x: 0, y: c.value / c.b });
+    });
+
+    // 2. where each pair of lines crosses each other
+    for (let i = 0; i < constraints.length; i++) {
+        for (let j = i + 1; j < constraints.length; j++) {
+            const c1 = constraints[i];
+            const c2 = constraints[j];
+
+            const det = c1.a * c2.b - c2.a * c1.b;
+            if (det === 0) {
+                continue; // parallel lines never cross
+            }
+
+            candidates.push({
+                x: (c1.value * c2.b - c2.value * c1.b) / det,
+                y: (c1.a * c2.value - c2.a * c1.value) / det
+            });
+        }
+    }
+
+    // 3. keep only the feasible ones
+    return candidates.filter(function(p) {
+        if (p.x < -1e-9 || p.y < -1e-9) {
+            return false;
+        }
+        return constraints.every(function(c) {
+            return satisfies(p, c);
+        });
+    });
+}
+
 // Event listeners
 dietSelector.addEventListener("change", function() {
     currentProblem = dietProblems[dietSelector.value];
