@@ -1,16 +1,14 @@
-
-Index · HTML
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
+
     <!-- Fonts: Montserrat (headings) + Inter (body text) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
- 
+
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
     <title>The Diet Planner</title>
@@ -25,12 +23,12 @@ Index · HTML
             </p>
             <p class="tagline">Comer bien, también es una buena inversión.</p>
         </header>
- 
+
         <main class="layout">
             <!-- Left column, top: choose a problem and read it -->
             <section class="card">
                 <h2>Selector de Problemas</h2>
- 
+
                 <label for="diet-select">Elige una dieta:</label>
                 <select id="diet-select" name="diet">
                     <option value="">---Selecciona una dieta---</option>
@@ -38,25 +36,25 @@ Index · HTML
                     <option value="Eggs-and-Toasts">Huevos y Pan Tostado</option>
                     <option value="Chicken-and-Salad">Pollo y Ensalada</option>
                 </select>
- 
+
                 <h3>Resumen del Problema</h3>
                 <div id="problem-summary"></div> <!--Problem summary container-->
             </section>
- 
+
             <!-- Right column: the graph and its step buttons -->
             <section class="card graph-card">
                 <h2>Método Gráfico</h2>
- 
+
                 <!--Graph Container-->
                 <div id="graph-container"></div>
- 
+
                 <!--Navigation Buttons-->
                 <div id="nav-controls">
                     <button type="button" id="btn-previous">Anterior</button>
                     <button type="button" id="btn-next">Siguiente</button>
                 </div>
             </section>
- 
+
             <!-- Left column, bottom: the final answer -->
             <section class="card">
                 <h2>Resultados</h2> <!--This is header separator for the results panel-->
@@ -66,4 +64,3 @@ Index · HTML
     </div>
 </body>
 </html>
- 

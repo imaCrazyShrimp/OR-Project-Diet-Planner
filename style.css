@@ -1,67 +1,110 @@
 /* Basic Reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* Set Up Custom Properties */
-
 :root {
-    /* UI colors */
-    --bg-color: #f8faf5; 
-    --primary-color: #1A603B;
-    --secondary-color: #44A252;
-    --hover-color: #9CD0A2;
-    --accent-color: #FEE29C;
-    --txt-color-main: #0C402F;
-    --txt-desc-color: #B5C3CA;
+  /* UI colors */
+  --bg-color: #f8faf5;
+  --card-color: #ffffff;
+  --primary-color: #1A603B;
+  --secondary-color: #44A252;
+  --hover-color: #9CD0A2;
+  --accent-color: #FEE29C;
+  --orange-color: #FF8A3D;
+  --txt-color-main: #0C402F;
+  --txt-desc-color: #607D8B;
 
-    /* Fonts */
-    --font-base: "Montserrat", "Inter", sans-serif;
+  /* Fonts */
+  --font-heading: "Montserrat", sans-serif;
+  --font-body: "Inter", sans-serif;
 
-    /* Layout */
+  /* Layout */
   --max-width: 1200px;
   --spacing-sm: 0.5rem;
   --spacing-md: 1rem;
   --spacing-lg: 2rem;
+  --radius: 16px;
 }
 
 body {
   background-color: var(--bg-color);
   color: var(--txt-color-main);
-  font-family: var(--font-base);
+  font-family: var(--font-body);
+  line-height: 1.5;
 }
 
 #container {
+  max-width: var(--max-width);
+  margin: 0 auto;
   padding: var(--spacing-lg);
 }
 
+/* Header */
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+}
+
 h1 {
-  color: var(--txt-color-main);
-  margin-bottom: var(--spacing-lg);
+  font-size: 2.5rem;
   text-align: center;
 }
 
-h2 {
-  margin-top: var(--spacing-md);
+h1 span {
   color: var(--secondary-color);
 }
 
-h3, 
-select, 
-button {
-  margin-top: var(--spacing-sm);
+.intro {
+  max-width: 700px;
+  margin: var(--spacing-md) auto 0;
+  text-align: center;
 }
 
-select, 
+.tagline {
+  margin: var(--spacing-sm) 0 var(--spacing-lg);
+  text-align: center;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--secondary-color);
+}
+
+/* Headings inside the cards */
+h2 {
+  margin-bottom: var(--spacing-sm);
+  color: var(--secondary-color);
+}
+
+h3 {
+  margin-top: var(--spacing-md);
+}
+
+/* Form controls */
+label {
+  display: block;
+  margin-bottom: var(--spacing-sm);
+  font-weight: 500;
+}
+
+select,
 button {
+  font-family: inherit; /* form controls do not inherit the font by default */
   color: var(--bg-color);
   background-color: var(--primary-color);
-  padding: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
   border-radius: var(--spacing-sm);
   font-weight: bold;
   border: none;
+  cursor: pointer;
+}
+
+option {
+  background-color: var(--primary-color);
+  color: var(--bg-color);
 }
 
 button {
@@ -69,6 +112,97 @@ button {
 }
 
 button:hover {
-  background-color: var(--hover-color);
+  background-color: var(--secondary-color);
   transform: scale(1.02);
+}
+
+select:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--orange-color);
+  outline-offset: 2px;
+}
+
+/* Layout: left column (selector, results) + right column (graph) */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: var(--spacing-lg);
+}
+
+.card {
+  background-color: var(--card-color);
+  border-radius: var(--radius);
+  padding: var(--spacing-lg);
+  box-shadow: 0 4px 16px rgba(15, 61, 46, 0.08);
+}
+
+/* The graph is the main element, so it is the one card with an outline */
+.graph-card {
+  grid-row: span 2;
+  border: 2px solid var(--hover-color);
+}
+
+/* Graph */
+/* Needs the viewBox from renderGraph() in script.js to scale properly */
+#graph-container svg {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  margin: 0 auto;
+}
+
+#nav-controls {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+}
+
+/* Summary and results */
+#problem-summary {
+  margin-top: var(--spacing-sm);
+}
+
+#results:not(:empty) {
+  padding: var(--spacing-md);
+  border-radius: var(--spacing-sm);
+  background-color: var(--hover-color);
+}
+
+/* Empty states: tell the user what to do next */
+#problem-summary:empty::before {
+  content: "Selecciona una dieta para comenzar.";
+  color: var(--txt-desc-color);
+}
+
+#results:empty::before {
+  content: "Llega al último paso para ver la solución.";
+  color: var(--txt-desc-color);
+}
+
+/* Small screens: one column */
+@media (max-width: 800px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .graph-card {
+    grid-row: auto;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+/* Respect users who turn animations off */
+@media (prefers-reduced-motion: reduce) {
+  button {
+    transition: none;
+  }
+
+  button:hover {
+    transform: none;
+  }
 }
