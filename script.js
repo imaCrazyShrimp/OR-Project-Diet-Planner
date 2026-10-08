@@ -2,6 +2,8 @@
 let currentProblem = null; 
 let currentStep = 0;
 let currentBounds = null;
+let currentCorners = null;
+let currentOptimal = null;
 
 // reference selector
 const dietSelector = document.getElementById("diet-select");
