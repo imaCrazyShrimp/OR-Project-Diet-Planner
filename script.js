@@ -226,16 +226,19 @@ function getCornerPoints(problem) {
 // Event listeners
 dietSelector.addEventListener("change", function() {
     currentProblem = dietProblems[dietSelector.value];
+    currentStep = 0;
 
     if (!currentProblem) {
         currentBounds = null;
-        currentStep = 0;
+        currentCorners = null;
+        currentOptimal = null;
         render();
         return;
     }
-    
-    currentStep = 0;  
+
     currentBounds = getAxisBounds(currentProblem);
+    currentCorners = getCornerPoints(currentProblem);
+    currentOptimal = getOptimalPoint(currentProblem, currentCorners);
     render();
 });
 
