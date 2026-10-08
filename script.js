@@ -242,6 +242,29 @@ dietSelector.addEventListener("change", function() {
     render();
 });
 
+function getCost(problem, point) {
+    return problem.objective.x * point.x + problem.objective.y * point.y;
+}
+
+function getOptimalPoint(problem, corners) {
+    let best = null;
+    let bestCost = Infinity;
+
+    corners.forEach(function(point) {
+        const cost = getCost(problem, point);
+        if (cost < bestCost) {
+            bestCost = cost;
+            best = point;
+        }
+    });
+
+    if (!best) {
+        return null; // no feasible corners at all
+    }
+
+    return { x: best.x, y: best.y, cost: bestCost };
+}
+
 nextButton.addEventListener("click", function() {
     if (currentProblem === null) { 
         return; // nothing selected yet, do nothing
