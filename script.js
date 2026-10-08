@@ -13,7 +13,10 @@ const problemSummary = document.getElementById("problem-summary");
 const graphContainer = document.getElementById("graph-container");
 const results = document.getElementById("results");
 
-const CANVAS_SIZE = 275;
+const CANVAS_SIZE = 400;                    // the plotting area
+const MARGIN = 45;                          // room around it for the numbers
+const TOTAL_SIZE = CANVAS_SIZE + MARGIN * 2;
+const CONSTRAINT_COLORS = ["#FF8A3D", "#607D8B", "#0F3D2E"];
 
 const dietProblems = {
     "Rice-and-Beans": {
@@ -45,31 +48,59 @@ const dietProblems = {
 };
 
 // functions
+function createSvgText(content, x, y, anchor) {
+    const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    text.setAttribute("x", x);
+    text.setAttribute("y", y);
+    text.setAttribute("text-anchor", anchor);
+    text.setAttribute("font-size", 12);
+    text.setAttribute("fill", "#607D8B");
+    text.textContent = content;
+    return text;
+}
+
 function renderGraph() {
     graphContainer.innerHTML = "";
 
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.setAttribute("width", CANVAS_SIZE);
-    svg.setAttribute("height", CANVAS_SIZE);
+    svg.setAttribute("viewBox", `0 0 ${TOTAL_SIZE} ${TOTAL_SIZE}`);
+
+    const left = MARGIN;
+    const right = MARGIN + CANVAS_SIZE;
+    const top = MARGIN;
+    const bottom = MARGIN + CANVAS_SIZE;
 
     const xAxis = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    xAxis.setAttribute("x1", 0);
-    xAxis.setAttribute("y1", CANVAS_SIZE);
-    xAxis.setAttribute("x2", CANVAS_SIZE);
-    xAxis.setAttribute("y2", CANVAS_SIZE);
-    xAxis.setAttribute("stroke", "black");
+    xAxis.setAttribute("x1", left);
+    xAxis.setAttribute("y1", bottom);
+    xAxis.setAttribute("x2", right);
+    xAxis.setAttribute("y2", bottom);
+    xAxis.setAttribute("stroke", "#0F3D2E");
+    xAxis.setAttribute("stroke-width", 2);
 
     const yAxis = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    yAxis.setAttribute("x1", 0);
-    yAxis.setAttribute("y1", 0);
-    yAxis.setAttribute("x2", 0);
-    yAxis.setAttribute("y2", CANVAS_SIZE);
-    yAxis.setAttribute("stroke", "black");
+    yAxis.setAttribute("x1", left);
+    yAxis.setAttribute("y1", top);
+    yAxis.setAttribute("x2", left);
+    yAxis.setAttribute("y2", bottom);
+    yAxis.setAttribute("stroke", "#0F3D2E");
+    yAxis.setAttribute("stroke-width", 2);
 
     svg.appendChild(xAxis);
     svg.appendChild(yAxis);
-    graphContainer.appendChild(svg);
 
+    // numbers along the axes (only when a problem is selected)
+    if (currentBounds) {
+        const ticks = 4;
+        for (let i = 0; i <= ticks; i++) {
+            const xValue = (currentBounds.maxX * i) / ticks;
+            const yValue = (currentBounds.maxY * i) / ticks;
+            svg.appendChild(createSvgText(xValue.toFixed(1), toSvgX(xValue), bottom + 20, "middle"));
+            svg.appendChild(createSvgText(yValue.toFixed(1), left - 8, toSvgY(yValue) + 4, "end"));
+        }
+    }
+
+    graphContainer.appendChild(svg);
     return svg;
 }
 
@@ -168,11 +199,11 @@ function getAxisBounds(problem) {
 }
 
 function toSvgX(mathX) {
-    return (mathX / currentBounds.maxX) * CANVAS_SIZE;
+    return MARGIN + (mathX / currentBounds.maxX) * CANVAS_SIZE;
 }
 
 function toSvgY(mathY) {
-    return CANVAS_SIZE - (mathY / currentBounds.maxY) * CANVAS_SIZE;
+    return MARGIN + CANVAS_SIZE - (mathY / currentBounds.maxY) * CANVAS_SIZE;
 }
 
 function satisfies(point, constraint) {
